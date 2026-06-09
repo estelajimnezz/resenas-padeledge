@@ -19,7 +19,7 @@
     .slider-container {
       position: relative;
       width: 100%;
-      max-width: 750px;
+      max-width: 600px;
       background: #0A0A0A;
       padding: 30px 60px;
       border-radius: 20px;
@@ -56,12 +56,12 @@
       font-weight: 700;
       font-size: 1.2rem;
       color: #F2F5DF;
-      margin: 0 0 2px 0;
+      margin: 0 0 4px 0;
       width: 100%;
     }
 
     .estrellas {
-      font-size: 2rem;
+      font-size: 1rem;
       color: #D0F13C;
       margin: 0 0 4px 0;
       width: 100%;
@@ -72,19 +72,19 @@
       font-weight: 300;
       font-size: 0.7rem;
       color: #D0F13C;
-      margin: 0 0 10px 0;
+      margin: 0 0 12px 0;
       letter-spacing: 0.5px;
       width: 100%;
     }
 
     .texto {
       font-family: 'Poppins', sans-serif;
-      font-weight: 380;
+      font-weight: 400;
       font-size: 1rem;
       color: #F2F5DF;
       line-height: 1.5;
       margin: 0;
-      width: 90%;
+      width: 100%;
     }
 
     .slider-btn {
@@ -116,6 +116,28 @@
 
     .prev-btn { left: 10px; }
     .next-btn { right: 10px; }
+
+    @media (max-width: 600px) {
+      .slider-container {
+        padding: 20px 45px;
+      }
+      .texto {
+        font-size: 0.8rem;
+      }
+      .estrellas {
+        font-size: 1.2rem;
+      }
+      .slider-btn {
+        width: 34px;
+        height: 34px;
+      }
+      .slider-btn svg {
+        width: 22px;
+        height: 22px;
+      }
+      .prev-btn { left: 5px; }
+      .next-btn { right: 5px; }
+    }
   </style>
 </head>
 <body>
