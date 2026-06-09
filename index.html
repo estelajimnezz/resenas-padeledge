@@ -11,20 +11,20 @@
       padding: 10px;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       background: transparent;
+      overflow: hidden;
     }
 
     .slider-container {
       position: relative;
       width: 100%;
-      max-width: 600px;
+      max-width: 750px;
       background: #0A0A0A;
       padding: 30px 60px;
       border-radius: 20px;
       box-sizing: border-box;
       text-align: center;
-      overflow: hidden;
     }
 
     .slider-content {
@@ -56,12 +56,12 @@
       font-weight: 700;
       font-size: 1.2rem;
       color: #F2F5DF;
-      margin: 0 0 4px 0;
+      margin: 0 0 2px 0;
       width: 100%;
     }
 
     .estrellas {
-      font-size: 1rem;
+      font-size: 2.5rem;
       color: #D0F13C;
       margin: 0 0 4px 0;
       width: 100%;
@@ -72,19 +72,19 @@
       font-weight: 300;
       font-size: 0.7rem;
       color: #D0F13C;
-      margin: 0 0 12px 0;
+      margin: 0 0 10px 0;
       letter-spacing: 0.5px;
       width: 100%;
     }
 
     .texto {
       font-family: 'Poppins', sans-serif;
-      font-weight: 400;
+      font-weight: 380;
       font-size: 1rem;
       color: #F2F5DF;
       line-height: 1.5;
       margin: 0;
-      width: 100%;
+      width: 90%;
     }
 
     .slider-btn {
@@ -120,7 +120,7 @@
 </head>
 <body>
 
-<div class="slider-container">
+<div class="slider-container" id="main-container">
   <button id="prevBtn" class="slider-btn prev-btn">
     <svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="15 18 9 12 15 6"></polyline>
@@ -141,6 +141,14 @@
 <script>
   let currentSlide = 0;
   
+  function avisarAltura() {
+    const contenedor = document.getElementById('main-container');
+    if(contenedor) {
+      const altura = contenedor.offsetHeight + 20;
+      window.parent.postMessage({ tipo: 'redimensionar', altura: altura }, '*');
+    }
+  }
+  
   function showSlide(index) {
     const slides = document.querySelectorAll('.slide');
     if (slides.length === 0) return;
@@ -149,6 +157,8 @@
     
     slides.forEach(slide => slide.classList.remove('active'));
     slides[currentSlide].classList.add('active');
+    
+    setTimeout(avisarAltura, 50);
   }
 
   document.getElementById('prevBtn').addEventListener('click', () => {
@@ -186,12 +196,16 @@
       });
       
       currentSlide = 0;
+      setTimeout(avisarAltura, 100);
+      
     } catch (error) {
       contenedor.innerHTML = '<div style="color: #F2F5DF; font-family: Poppins; width: 100%; text-align: center;">Error al cargar.</div>';
+      setTimeout(avisarAltura, 100);
     }
   }
 
   cargarResenas();
+  window.addEventListener('resize', avisarAltura);
 </script>
 </body>
 </html>
